@@ -1,0 +1,43 @@
+html {
+  position: relative;
+  min-height: 100%;
+}
+
+body {
+  padding-top: 50px; /** same as nav height */
+  background-color: #E0E4CC;
+  margin-bottom: 60px; /* same size as footer height */
+}
+
+nav {  
+  height:50px;  
+}
+
+.footer-text{
+	margin-left:15px;
+	margin-top:15px;
+}
+
+.footer {
+  background-color: #404040;
+  color: white;         
+  font-family: Helvetica;
+  font-size:13px;  
+  height:60px;  
+  
+  /* bottom of page */
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+}
+
+.tabber{
+  background-color: lightgrey;
+  height:600px;  
+}
+
+.browser{
+  background-color: grey;
+  width:252px;
+  height:600px;
+}
