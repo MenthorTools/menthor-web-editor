@@ -17,8 +17,13 @@
 	<!-- JS Bootstrap -->
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
 	
-	<!-- CSS Template -->
+	<!-- JS Tree -->
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jstree/3.2.1/themes/default/style.min.css" />
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jstree/3.2.1/jstree.min.js"></script>
+	
+	<!-- Template -->
 	<link rel="stylesheet" href="/template.css">
+	<link rel="stylesheet" href="/multi-level-dropdown.css"
 	
 </head>
 <body>
@@ -30,15 +35,30 @@
 				<a class="navbar-brand" href="#"><i>Menthor Editor</i></a>
 			</div>
 			<ul class="nav navbar-nav">         
-				<li class="active"><a href="#">Welcome</a></li>  
-				<li class="dropdown">
-					<a class="dropdown-toggle" data-toggle="dropdown" href="#">File<span class="caret"></span></a>
-					<ul class="dropdown-menu">
-						<li><a href="#">Open As</a></li>
-						<li><a href="#">Save As</a></li>
+				<li class="active"><a href="#">Welcome</a></li>				
+				
+				<li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">File<span class="caret"></span></a>
+					<ul class="dropdown-menu multi-level">
+					
+						<li class="dropdown-submenu"><a class="dropdown-toggle" data-toggle="dropdown" href="#">Open as</a>
+							<ul class="dropdown-menu">
+								<li id="open-json" class="openFile"><a href="#">Json</a></li>
+								<li id="open-xml" class="openFile"><a href="#">Xml (EA)</a></li>
+								<li id="open-refontouml" class="openFile"><a href="#">Refontouml</a></li>								
+							</ul>
+						</li>						
+						<li class="dropdown-submenu"><a class="dropdown-toggle" data-toggle="dropdown" href="#">Save as</a>
+							<ul class="dropdown-menu">
+								<li id="save-json" class="save"><a href="#">Json</a></li>								
+								<li id="save-refontouml"><a href="#">Refontouml</a></li>
+								<li id="save-uml"><a href="#">Uml</a></li>
+								<li id="save-ecore"><a href="#">Ecore</a></li>
+							</ul>
+						</li>
+						
 						<li><a href="#">Close</a></li>
 					</ul>
-				</li>
+				</li>				
 				<li><a href="#">About</a></li>      
 			</ul>    
 		</div>  
@@ -46,14 +66,48 @@
 	
 	<!-- Section -->
 	<section class="row">	  	
-		<div class="browser col-xs-3"></div>
-		<div class="tabber col-xs-9 container-fluid"></div>  	  
+		<div id="browser" class="col-xs-3">
+			<div id="jstree">
+			<!-- in this example the tree is populated from inline HTML -->
+				<ul>
+				  <li>Root node 1
+					<ul>
+					  <li id="child_node_1">Child node 1</li>
+					  <li>Child node 2</li>
+					</ul>
+				  </li>
+				  <li>Root node 2</li>
+				</ul>
+			</div>
+		</div>
+		<div id="tabber" class="col-xs-9 container-fluid"></div>  	  
 	</section>  
 	
 	<!-- Footer -->
-	<footer class="footer container-fluid"> 
+	<footer id="footer" class="container-fluid"> 
 		<p class="footer-text"> © 2016 Menthor Consulting in Information Technology, Inc. Under MIT license.</p>		
 	</footer>
 	
+	<!-- File Chooser -->
+	<input id="file-chooser" type="file" accept="" style="display: none;">
+	<script> 
+		$(".openFile").on('click', function() {			
+			var ext = "."+$(this).attr('id').replace("open-","");
+			$('#file-chooser').prop("accept", ext);			
+			$('#file-chooser').trigger('click');
+		});
+	</script>
+	
+	<!-- Tree --> 
+	<script>
+		$(function () {
+			 // create an instance when the DOM is ready
+			$('#jstree').jstree();
+			// bind to events triggered on the tree
+			$('#jstree').on("changed.jstree", function (e, data) {
+				console.log(data.selected);
+			});
+		});
+	</script>
 </body>
 </html>
