@@ -11,11 +11,17 @@
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap-theme.min.css" integrity="sha384-fLW2N01lMqjakBkx3l/M9EahuwpSfeNvV63J5ezn3uZzapT0u7EYsXMjQV+0En5r" crossorigin="anonymous">
 
+	<!-- CSS Bootstrap Select Plugin-->
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.10.0/css/bootstrap-select.min.css">
+
 	<!-- JS jQuery -->
 	<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
 		
 	<!-- JS Bootstrap -->
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
+	
+	<!-- JS Bootstrap Select Plugin -->
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.10.0/js/bootstrap-select.min.js"></script>
 	
 	<!-- JS Tree -->
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jstree/3.2.1/themes/default/style.min.css" />
@@ -23,10 +29,15 @@
 	
 	<!-- Template -->
 	<link rel="stylesheet" href="/template.css">
-	<link rel="stylesheet" href="/multi-level-dropdown.css"
+	<link rel="stylesheet" href="/multi-level-dropdown.css">
+	
+	<!-- RESTful HTTP Address+Port-->
+	<script type='text/javascript'> var ADDR = "http://localhost:8080/"; </script>	
 	
 </head>
 <body>
+	
+	<input id="file-chooser" type="file" accept="" style="display: none;">
 	
 	<!-- Menu -->
 	<nav class="navbar navbar-inverse navbar-fixed-top">
@@ -40,19 +51,19 @@
 				<li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">File<span class="caret"></span></a>
 					<ul class="dropdown-menu multi-level">
 					
-						<li class="dropdown-submenu"><a class="dropdown-toggle" data-toggle="dropdown" href="#">Open as</a>
+						<li class="dropdown-submenu"><a class="dropdown-toggle" data-toggle="dropdown" href="#">Upload as</a>
 							<ul class="dropdown-menu">
-								<li id="open-json" class="openFile"><a href="#">Json</a></li>
-								<li id="open-xml" class="openFile"><a href="#">Xml (EA)</a></li>
-								<li id="open-refontouml" class="openFile"><a href="#">Refontouml</a></li>								
+								<li id="upload-json" class="uploadFile"><a href="#">Json</a></li>
+								<li id="upload-ea" class="uploadFile"><a href="#">Xml (EA)</a></li>
+								<li id="upload-refontouml" class="uploadFile"><a href="#">Refontouml</a></li>								
 							</ul>
 						</li>						
-						<li class="dropdown-submenu"><a class="dropdown-toggle" data-toggle="dropdown" href="#">Save as</a>
+						<li class="dropdown-submenu"><a class="dropdown-toggle" data-toggle="dropdown" href="#">Download as</a>
 							<ul class="dropdown-menu">
-								<li id="save-json" class="save"><a href="#">Json</a></li>								
-								<li id="save-refontouml"><a href="#">Refontouml</a></li>
-								<li id="save-uml"><a href="#">Uml</a></li>
-								<li id="save-ecore"><a href="#">Ecore</a></li>
+								<li id="download-json" class="save"><a href="#">Json</a></li>								
+								<li id="download'-refontouml"><a href="#">Refontouml</a></li>
+								<li id="download'-uml"><a href="#">Uml</a></li>
+								<li id="download-ecore"><a href="#">Ecore</a></li>
 							</ul>
 						</li>
 						
@@ -65,49 +76,42 @@
 	</nav>
 	
 	<!-- Section -->
-	<section class="row">	  	
-		<div id="browser" class="col-xs-3">
-			<div id="jstree">
-			<!-- in this example the tree is populated from inline HTML -->
-				<ul>
-				  <li>Root node 1
-					<ul>
-					  <li id="child_node_1">Child node 1</li>
-					  <li>Child node 2</li>
-					</ul>
-				  </li>
-				  <li>Root node 2</li>
-				</ul>
-			</div>
+	<section>	  	
+		<div id="menubar" class="row">
+			<div class="container-fluid">
+				<select id="tree-view" data-width='140px' class="selectpicker">
+					<option data-icon="glyphicon glyphicon-eye-open" value="package-hierarchy"> Package</option>
+					<option data-icon="glyphicon glyphicon-eye-open" value="type-hierarchy"> Hierarchy</option>
+					<option data-icon="glyphicon glyphicon-eye-open" value="type-composition"> Composition</option>
+				</select>
+			</div>						
 		</div>
-		<div id="tabber" class="col-xs-9 container-fluid"></div>  	  
-	</section>  
+		<div id="main-area" class="row">			
+			<div class="col-md-3">					
+				<div class="container-fluid">
+					<div id="browser"><div id="jstree"></div></div>							
+				</div>				
+			</div>			
+			<div class="col-md-9">				
+				<div class="container-fluid">
+					<div id="tabber">
+						<ul class="nav nav-tabs">						  
+						  <li class="active"><a data-toggle="tab" href="#detail-tab">Details</a></li>						  
+						</ul>										
+					</div>
+				</div>				
+			</div>  	  
+		</div>
+	</section>	
 	
 	<!-- Footer -->
-	<footer id="footer" class="container-fluid"> 
-		<p class="footer-text"> © 2016 Menthor Consulting in Information Technology, Inc. Under MIT license.</p>		
+	<footer id="footer">
+		<div class="container-fluid">
+			<p class="footer-text"> © 2016 Menthor Consulting in Information Technology, Inc. Under MIT license.</p>		
+		</div>	
 	</footer>
+	<script src='/tree.js'></script>	
+	<script src='/file-upload.js'></script>
 	
-	<!-- File Chooser -->
-	<input id="file-chooser" type="file" accept="" style="display: none;">
-	<script> 
-		$(".openFile").on('click', function() {			
-			var ext = "."+$(this).attr('id').replace("open-","");
-			$('#file-chooser').prop("accept", ext);			
-			$('#file-chooser').trigger('click');
-		});
-	</script>
-	
-	<!-- Tree --> 
-	<script>
-		$(function () {
-			 // create an instance when the DOM is ready
-			$('#jstree').jstree();
-			// bind to events triggered on the tree
-			$('#jstree').on("changed.jstree", function (e, data) {
-				console.log(data.selected);
-			});
-		});
-	</script>
 </body>
 </html>
