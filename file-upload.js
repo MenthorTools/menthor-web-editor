@@ -24,7 +24,8 @@ function uploadFile(apiUrl, blobFile, callback) {
 	   processData: false,
 	   contentType: false,	
 	   success: function(response) {
-          callback(ADDR+"api/tree/package-hierarchy");
+          var selected = $(this).find("option:selected").val();		
+		  callback(ADDR+"api/tree/"+selected)				  
 		  console.log(response)
 	   },
 	   error: function(jqXHR, textStatus, errorMessage) {
