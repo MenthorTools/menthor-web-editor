@@ -27,17 +27,22 @@
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jstree/3.2.1/themes/default/style.min.css" />
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/jstree/3.2.1/jstree.min.js"></script>
 	
+	<!-- JS Web Components -->
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/webcomponentsjs/0.7.22/webcomponents.min.js"></script>
+	
 	<!-- Template -->
-	<link rel="stylesheet" href="/template.css">
+	<link rel="stylesheet" href="/template.css">	
 	<link rel="stylesheet" href="/multi-level-dropdown.css">
 	
 	<!-- RESTful HTTP Address+Port-->
 	<script type='text/javascript'> var ADDR = "http://localhost:8080/"; </script>	
 	
+	<link rel="import" href="/tree.html" async>
+	<link rel="import" href="/file-upload.html" async>
+	<link rel="import" href="/file-download.html" async>
+	
 </head>
 <body>
-	
-	<input id="file-chooser" type="file" accept="" style="display: none;">
 	
 	<!-- Menu -->
 	<nav class="navbar navbar-inverse navbar-fixed-top">
@@ -46,29 +51,9 @@
 				<a class="navbar-brand" href="#"><i>Menthor Editor</i></a>
 			</div>
 			<ul class="nav navbar-nav">         
-				<li class="active"><a href="#">Welcome</a></li>				
-				
+				<li class="active"><a href="#">Welcome</a></li>								
 				<li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">File<span class="caret"></span></a>
-					<ul class="dropdown-menu multi-level">
-					
-						<li class="dropdown-submenu"><a class="dropdown-toggle" data-toggle="dropdown" href="#">Upload as</a>
-							<ul class="dropdown-menu">
-								<li id="upload-json" class="uploadFile"><a href="#">Json</a></li>
-								<li id="upload-ea" class="uploadFile"><a href="#">Xml (EA)</a></li>
-								<li id="upload-refontouml" class="uploadFile"><a href="#">Refontouml</a></li>								
-							</ul>
-						</li>						
-						<li class="dropdown-submenu"><a class="dropdown-toggle" data-toggle="dropdown" href="#">Download as</a>
-							<ul class="dropdown-menu">
-								<li id="download-json" class="save"><a href="#">Json</a></li>								
-								<li id="download'-refontouml"><a href="#">Refontouml</a></li>
-								<li id="download'-uml"><a href="#">Uml</a></li>
-								<li id="download-ecore"><a href="#">Ecore</a></li>
-							</ul>
-						</li>
-						
-						<li><a href="#">Close</a></li>
-					</ul>
+					<ul id="file-menu" class="dropdown-menu multi-level"></ul>
 				</li>				
 				<li><a href="#">About</a></li>      
 			</ul>    
@@ -78,12 +63,8 @@
 	<!-- Section -->
 	<section>	  	
 		<div id="menubar" class="row">
-			<div class="container-fluid">
-				<select id="tree-view" data-width='140px' class="selectpicker">
-					<option data-icon="glyphicon glyphicon-eye-open" value="package-hierarchy"> Package</option>
-					<option data-icon="glyphicon glyphicon-eye-open" value="type-hierarchy"> Hierarchy</option>
-					<option data-icon="glyphicon glyphicon-eye-open" value="type-composition"> Composition</option>
-				</select>
+			<div id="menubar-container" class="container-fluid">
+				
 			</div>						
 		</div>
 		<div id="main-area" class="row">			
@@ -110,8 +91,5 @@
 			<p class="footer-text"> © 2016 Menthor Consulting in Information Technology, Inc. Under MIT license.</p>		
 		</div>	
 	</footer>
-	<script src='/tree.js'></script>	
-	<script src='/file-upload.js'></script>
-	
 </body>
 </html>

@@ -1,0 +1,86 @@
+<link rel="import" href="tree.html">
+<link rel="import" href="dialog.html">
+
+<input id="file-chooser" type="file" accept="" style="display:none;"></input>
+
+<li id="upload-menuitem" class="dropdown-submenu"><a class="dropdown-toggle" data-toggle="dropdown" href="#">Upload as</a>
+	<ul class="dropdown-menu">
+		<li id="upload-json" class="uploadFile"><a href="#">Json</a></li>
+		<li id="upload-ea" class="uploadFile"><a href="#">Xml (EA)</a></li>
+		<li id="upload-refontouml" class="uploadFile"><a href="#">Refontouml</a></li>
+	</ul>
+</li>
+
+<script>
+	/** install file chooser */
+	var thisDoc = document._currentScript.ownerDocument;
+	var thatDoc = document;
+    var content = thisDoc.querySelector('#file-chooser');	 
+	var cloned = thatDoc.importNode(content, true);
+	thatDoc.body.appendChild(cloned);
+</script>
+
+<script>
+	/** install upload menu item */
+	var thisDoc = document._currentScript.ownerDocument;
+	var thatDoc = document;
+    var content = thisDoc.querySelector('#upload-menuitem');	 
+	var cloned = thatDoc.importNode(content, true);
+	thatDoc.querySelector('#file-menu').appendChild(cloned);
+</script>
+
+<script>
+
+/**
+  * Clicking at some "upload" menu item triggers
+  * a click event on the file-chooser
+  */
+$(".uploadFile").on('click', function() {			
+	var ext = "."+$(this).attr('id').replace("upload-","");
+	if(ext===".ea") $('#file-chooser').prop("accept", ".xml");
+	else $('#file-chooser').prop("accept", ext);	
+	$('#file-chooser').trigger('click');
+});
+
+/**
+  * File selected at the file-chooser is sent to the server via AJAX
+  */
+$("#file-chooser").change(function(){
+	var ext = $('#file-chooser').prop("accept").replace(".","");
+	if(ext==="xml") ext = "ea";
+	var file = $('#file-chooser')[0].files[0];		
+	var url = ADDR+"api/upload/"+ext
+	
+	var link = document.querySelector('link[rel="import"]');
+	console.log(link)
+    var dialog = link.dialog.querySelector('#dialog');
+	var clone = document.importNode(dialog.content, true);
+	clone.show();
+	//uploadFile(url,file,loadJSTree);
+});				
+
+/** 
+  * Upload file to the server via AJAX. 
+  * If file is succesfully uploaded, it calls 'callback' method to execute  
+  */
+function uploadFile(apiUrl, blobFile, callback) {
+	var fd = new FormData();
+	fd.append("file", blobFile);
+	$.ajax({
+	   url: apiUrl,
+	   type: "POST",
+	   data: fd,
+	   processData: false,
+	   contentType: false,	
+	   success: function(response) {
+          var selected = $('#tree-view').find("option:selected").val();		
+		  callback(ADDR+"api/tree/"+selected)				  
+		  console.log(response)
+	   },
+	   error: function(jqXHR, textStatus, errorMessage) {
+		  console.log(errorMessage);
+	   }
+	})
+}
+</script>
+

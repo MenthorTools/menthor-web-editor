@@ -1,0 +1,19 @@
+<link rel="import" href="tree.html">
+
+<li id="download-menuitem" class="dropdown-submenu"><a class="dropdown-toggle" data-toggle="dropdown" href="#">Download as</a>
+	<ul class="dropdown-menu">
+		<li id="download-json" class="downloadFile"><a href="#">Json</a></li>								
+		<li id="download'-refontouml" class="downloadFile"><a href="#">Refontouml</a></li>
+		<li id="download'-uml"class="downloadFile"><a href="#">Uml</a></li>
+		<li id="download-ecore" class="downloadFile"><a href="#">Ecore</a></li>
+	</ul>
+</li>
+
+<script>
+	/** install upload menu item */
+	var thisDoc = document._currentScript.ownerDocument;
+	var thatDoc = document;
+    var content = thisDoc.querySelector('#download-menuitem');	 
+	var cloned = thatDoc.importNode(content, true);
+	thatDoc.querySelector('#file-menu').appendChild(cloned);
+</script>

@@ -1,3 +1,20 @@
+<select id="tree-view-button" data-width='140px' class="selectpicker">
+	<option data-icon="glyphicon glyphicon-eye-open" value="package-hierarchy"> Package</option>
+	<option data-icon="glyphicon glyphicon-eye-open" value="type-hierarchy"> Hierarchy</option>
+	<option data-icon="glyphicon glyphicon-eye-open" value="type-composition"> Composition</option>
+</select>
+
+<script>
+	/** install tree-view button */
+	var thisDoc = document._currentScript.ownerDocument;
+	var thatDoc = document;
+    var content = thisDoc.querySelector('#tree-view-button');	 
+	var cloned = thatDoc.importNode(content, true);
+	thatDoc.querySelector('#menubar-container').appendChild(cloned);
+</script>
+
+<script>
+
 $(function() {
 	$('#tree-view').on('change', function(){
 		var selected = $(this).find("option:selected").val();		
@@ -43,3 +60,4 @@ function typeTreeConfig(){
 		"generalization" : {"icon" : "/icon/generalization.png" },
 	}
 }
+</script>
