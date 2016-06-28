@@ -2,44 +2,30 @@
 <html lang="en">	
 <head>
 
-	<!-- Required meta tags always come first -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
+	
+	<link rel="stylesheet" href="/css/bootstrap.min.css">
+	<link rel="stylesheet" href="/css/bootstrap-theme.min.css">
+	<link rel="stylesheet" href="/css/bootstrap-select.min.css">
+	<link rel="stylesheet" href="/css/multi-level-dropdown.css">
+	<link rel="stylesheet" href="/css/style.min.css" />
+	<link rel="stylesheet" href="/css/menthor.css">
+	
+	<script src="/js/jquery.min.js"></script>
+	<script src="/js/bootstrap.min.js"></script>
+	<script src="/js/bootstrap-select.min.js"></script>		
+	<script src="/js/webcomponents.min.js"></script>
+	<script src="/js/bootbox.min.js"></script> 
+	<script src="/js/jstree.min.js"></script>
+	
+	<script> 
+	var ADDR = "http://localhost:8080/"; 
+	</script>	
 			
-	<!-- CSS Bootstrap -->
-	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
-	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap-theme.min.css" integrity="sha384-fLW2N01lMqjakBkx3l/M9EahuwpSfeNvV63J5ezn3uZzapT0u7EYsXMjQV+0En5r" crossorigin="anonymous">
-
-	<!-- CSS Bootstrap Select Plugin-->
-	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.10.0/css/bootstrap-select.min.css">
-
-	<!-- JS jQuery -->
-	<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
-		
-	<!-- JS Bootstrap -->
-	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
-	
-	<!-- JS Bootstrap Select Plugin -->
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.10.0/js/bootstrap-select.min.js"></script>
-	
-	<!-- JS Tree -->
-	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jstree/3.2.1/themes/default/style.min.css" />
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/jstree/3.2.1/jstree.min.js"></script>
-	
-	<!-- JS Web Components -->
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/webcomponentsjs/0.7.22/webcomponents.min.js"></script>
-	
-	<!-- Template -->
-	<link rel="stylesheet" href="/template.css">	
-	<link rel="stylesheet" href="/multi-level-dropdown.css">
-	
-	<!-- RESTful HTTP Address+Port-->
-	<script type='text/javascript'> var ADDR = "http://localhost:8080/"; </script>	
-	
-	<link rel="import" href="/tree.html" async>
-	<link rel="import" href="/file-upload.html" async>
-	<link rel="import" href="/file-download.html" async>
+	<link rel="import" href="/file-upload.html">
+	<link rel="import" href="/file-download.html">
 	
 </head>
 <body>
@@ -91,5 +77,6 @@
 			<p class="footer-text"> © 2016 Menthor Consulting in Information Technology, Inc. Under MIT license.</p>		
 		</div>	
 	</footer>
+	
 </body>
 </html>
