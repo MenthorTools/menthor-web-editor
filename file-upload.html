@@ -1,104 +1,44 @@
-<link rel="import" href="tree.html">
+<link rel="import" href="../browser.html">
+<link rel="stylesheet" href="file-upload.css">
 
 </template>
-	
-	<!-- Menu Item: Upload as -->
+
 	<li id="upload-menuitem" class="dropdown-submenu"><a class="dropdown-toggle" data-toggle="dropdown" href="#">Upload as</a>
 		<ul class="dropdown-menu">
 			<li id="upload-json" class="uploadFile"><a href="#">Json</a></li>
-			<li id="upload-ea" class="uploadFile"><a href="#">Xml (EA)</a></li>
+			<li id="upload-ea" class="uploadFile"><a href="#">Xml(EA)</a></li>
 			<li id="upload-refontouml" class="uploadFile"><a href="#">Refontouml</a></li>
 		</ul>
 	</li>
 	
-	<!-- File Chooser -->	
-	<input id="file-chooser" type="file" accept="" style="display:none;"></input>
+	<div id="file-chooser" class="row-fluid">
+		<label id="browse-button" class="btn btn-primary">
+			<input id="file-input" type="file" accept="" style="display:none;">Choose File...
+		</label>
+		<span id="file-path">  No file selected...</span>
+	</div>
 	
-	<!-- Upload Options-->
-	<div id="refontouml-uploadoption">
+	<div id="refontouml-options">				
 		<div class="checkbox"><label><input id="refontouml-ignore-package" type="checkbox" value="">Ignore package hierarchy</label></div>
-		<div class="checkbox"><label><input id="refontouml-classes-as-events" type="checkbox" value="">Handle classes without stereotypes as Events</label></div>
-	</div>	
+		<div class="checkbox"><label><input id="refontouml-classes-as-events" type="checkbox" value="" checked>Classes without stereotypes as Events</label></div>		
+	</div>		
 	
+	<div id="ea-options">				
+		<div class="checkbox"><label><input id="ignore-unnamed-eatypes" type="checkbox" value="" checked>Ignore unnamed classes and datatypes</label></div>
+		<div class="checkbox"><label><input id="set-1-eamultiplicities" type="checkbox" value="" checked>Set [1] for invalid multiplicities</label></div>		
+	</div>
 </template>
 
 <script>
-	
 	var thisDoc = document._currentScript.ownerDocument;
-	var thatDoc = document;
-    	
-	/** install #upload-menuitem */	
-    var content = thisDoc.querySelector('#upload-menuitem');	 
-	var cloned = thatDoc.importNode(content, true);
-	thatDoc.querySelector('#file-menu').appendChild(cloned);
-	
-	/** install #file-chooser */
-	content = thisDoc.querySelector('#file-chooser');	 
-	cloned = thatDoc.importNode(content, true);
-	thatDoc.body.appendChild(cloned);
+	var thatDoc = document; //refers to index.html
 
-	/** install #refontouml-uploadoption */
-	content = thisDoc.querySelector('#refontouml-uploadoption');	 
-	cloned = thatDoc.importNode(content, true);
-	thatDoc.body.appendChild(cloned);
-	
+	var menuItemTemplate = thisDoc.querySelector('#upload-menuitem');	 
+	var fileChooserTemplate = thisDoc.querySelector('#file-chooser');	 
+	var refOptionsTemplate = thisDoc.querySelector('#refontouml-options');	
+	var eaOptionsTemplate = thisDoc.querySelector('#ea-options');
 </script>
 
-<!-- Behaviour -->
+<script src="file-upload.js"></script>
 
-<script>
-
-$(".uploadFile").on('click', function() {			
-
-	/** open file chooser */
-	var ext = "."+$(this).attr('id').replace("upload-","");
-	if(ext===".ea") $('#file-chooser').prop("accept", ".xml");
-	else $('#file-chooser').prop("accept", ext);	
-	$('#file-chooser').trigger('click');
-});
-
-$("#file-chooser").change(function(){
-	
-	/** file */
-	var file = $('#file-chooser')[0].files[0];							
-	
-	/** url */
-	var ext = $('#file-chooser').prop("accept").replace(".","");	
-	if(ext==="xml") ext = "ea";
-	var url = ADDR+"api/upload/"+ext					
-	
-	/** form */
-	var form = new FormData();
-	form.append("file", file);
-	
-	/** dialog */
-	bootbox.dialog({
-		title: "Upload "+ext,
-		message: $('#'+ext+'-uploadoption'),			
-		buttons: { success: { label: "Confirm", className: "btn-success",
-			callback: function(){				
-				appendOptions(ext, form)
-				ajax_post(url,form,loadJSTree)
-			}
-		}}
-	});
-});				
-
-function appendOptions(ext, form){
-	if(ext==='refontouml'){					
-		var ignorePackages = $("#refontouml-ignore-package").is(':checked');					
-		var classesAsEvents = $("#refontouml-classes-as-events").is(':checked');	
-		form.append("ignore-package",ignorePackages);
-		form.append("classes-as-events",classesAsEvents);	
-	}
-}
-
-function ajax_post(url, formData, callback) {	
-	$.ajax({url: url, type: "POST", data: formData, processData: false, contentType: false,	
-		success: function(response) { callback(); console.log(response) },
-		error: function(jqXHR, textStatus, errorMessage) { console.log(errorMessage); }
-	});
-}
-
-</script>
 

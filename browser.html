@@ -1,0 +1,25 @@
+<link rel="import" href="tab-manager.html">
+<link rel="import" href="details.html">
+<link rel="stylesheet" href="browser.css">
+
+</template>
+
+	<div id="browser">
+		<div id="jstree">
+	
+		</div>
+	</div>	
+	
+	<select id="tree-view-button" data-width='140px' class="selectpicker">
+		<option data-icon="glyphicon glyphicon-eye-open" value="package-hierarchy"> Package</option>
+		<option data-icon="glyphicon glyphicon-eye-open" value="type-hierarchy"> Hierarchy</option>
+		<option data-icon="glyphicon glyphicon-eye-open" value="type-composition"> Composition</option>
+	</select>
+	
+</template>
+
+<script>
+	var browserDoc = document._currentScript.ownerDocument;	
+</script>
+
+<script src="browser.js"></script>

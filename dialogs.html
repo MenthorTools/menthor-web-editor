@@ -1,0 +1,30 @@
+
+<script>
+
+function show_success(message){
+	var dialog = new BootstrapDialog({
+		type: BootstrapDialog.TYPE_SUCCESS,
+		size: BootstrapDialog.SIZE_SMALL,
+		title: 'Success!',
+		animate:false,
+		message: message,
+		hotkey:13,//enter
+		buttons: [{label: 'Ok', action: function(dialog){dialog.close();}}]
+	}); 
+	dialog.open();
+}
+
+function show_error(message){
+	var dialog = new BootstrapDialog({
+		type: BootstrapDialog.TYPE_DANGER,
+		size: BootstrapDialog.SIZE_SMALL,
+		title: 'Error!',
+		animate:false,
+		message: message,
+		hotkey:13,//enter
+		buttons: [{label: 'Ok', action: function(dialog){dialog.close();}}]
+	}); 
+	dialog.open();
+}
+
+</script>

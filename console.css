@@ -1,0 +1,15 @@
+#console-body{
+  background-color: rgba(0,0,0,0.5);
+  color: white;
+  height:560px;
+}
+
+#console-textarea{
+  background-color: rgba(0,0,0,0.0);
+  color: #f6f6f6;
+  height:560px;
+  resize: none;
+  width:100%;	
+  padding:20px;
+  font-size:13px;
+}

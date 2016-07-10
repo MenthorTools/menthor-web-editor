@@ -1,21 +1,64 @@
-<link rel="import" href="tree.html">
 
 </template>
+
 	<li id="download-menuitem" class="dropdown-submenu"><a class="dropdown-toggle" data-toggle="dropdown" href="#">Download as</a>
 		<ul class="dropdown-menu">
 			<li id="download-json" class="downloadFile"><a href="#">Json</a></li>								
-			<li id="download'-refontouml" class="downloadFile"><a href="#">Refontouml</a></li>
-			<li id="download'-uml"class="downloadFile"><a href="#">Uml</a></li>
+			<li id="download-refontouml" class="downloadFile"><a href="#">Refontouml</a></li>
+			<li id="download-uml"class="downloadFile"><a href="#">Uml</a></li>
 			<li id="download-ecore" class="downloadFile"><a href="#">Ecore</a></li>
 		</ul>
 	</li>
+
+	<div id="download-content"></div>
+	
 </template>
 
 <script>
-	/** install upload menu item */
-	var thisDoc = document._currentScript.ownerDocument;
-	var thatDoc = document;
-    var content = thisDoc.querySelector('#download-menuitem');	 
-	var cloned = thatDoc.importNode(content, true);
+
+var thisDoc = document._currentScript.ownerDocument;
+var thatDoc = document;
+var menuItemTemplate = thisDoc.querySelector('#download-menuitem');	 
+var textContentTemplate = thisDoc.querySelector('#download-content');	 
+
+$(function(){
+	install_menuitem();
+});
+
+function install_menuitem(){
+	if($('#download-menuitem').length) return	
+	var cloned = thatDoc.importNode(menuItemTemplate, true);
 	thatDoc.querySelector('#file-menu').appendChild(cloned);
+}
+	
+function as_html(xmlString) {
+	var result = String(xmlString).replace(/&/g, '&amp;').replace(/</g,     '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
+	return result;
+}
+
+$(".downloadFile").on('click', function() {
+
+    var popup = window.open("about:blank", "download");
+	popup.focus();
+	
+	var ext = $(this).attr('id').replace("download-","");	
+	var url = ADDR+"api/download/"+ext;
+	if(ext!='json') ext='xml'
+		
+	$.get(url, function(data) {				
+		if(ext==='xml') {
+			data = (new XMLSerializer()).serializeToString(data);		
+			var cloned = thatDoc.importNode(textContentTemplate, true);
+			cloned.innerHTML = as_html(data);
+			popup.document.body.appendChild(cloned);			
+		}else{
+			popup.document.write(data);			
+		}	
+	}).done(function(){ 
+		//sucess
+	}).fail(function(){ 
+		//error
+	});
+});
+
 </script>

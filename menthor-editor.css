@@ -1,0 +1,54 @@
+html {
+  position: relative;
+  min-height: 100%;
+}
+
+body {
+  padding-top: 50px; /** same as nav:height */
+  background-image: url("../img/mountain.png");
+  margin-bottom: 100px;
+}
+
+#menu{
+  /** */
+}
+
+nav {  
+  height:50px;  /** same as body:padding-top */
+}
+
+#menubar{  
+  height:40px;
+  padding-top:3px;
+  padding-left:15px;
+}
+
+#main-area{
+  /** */
+}
+
+#left-area{
+  /** */
+}
+
+#right-area{
+  /** */
+}
+
+#footer {
+  background-color: #404040;
+  color: white;         
+  font-family: Helvetica;
+  font-size:13px;  
+  height:50px;  
+
+  /* bottom of page */
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+}
+
+.footer-text{
+	margin-left:15px;
+	margin-top:15px;
+}
