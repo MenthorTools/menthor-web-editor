@@ -1,14 +1,3 @@
-$(function(){
-	install();
-});
-
-function install(){
-	var tabManagerTemplate = tabManagerDoc.querySelector('#tab-manager');	 	
-	if($('#tab-manager').length) return	
-	var cloned = document.importNode(tabManagerTemplate, true);
-	document.querySelector('#right-area').appendChild(cloned);
-}
-
 function selecttab(idBody){
     $('.nav-tabs a[href="#'+idBody+']').tab('show');
 }

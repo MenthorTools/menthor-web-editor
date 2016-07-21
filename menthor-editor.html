@@ -15,6 +15,22 @@
 	<link rel="stylesheet" href="/css/multi-level-dropdown.css">	
 	<script src="/js/bootstrap.min.js"></script>
 		
+	<!-- react -->
+		
+	<!--
+	<script src="/js/react.js"></script>	
+	<script src="/js/react-dom.js"></script>	
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/babel-core/5.8.34/browser.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/remarkable/1.6.2/remarkable.min.js"></script>
+	-->
+	
+	<!-- react bootstrap-table -->
+	<!--
+	<link rel="stylesheet" href="/css/react-bootstrap-table-all.min.css">
+	<script rel="stylesheet" href="/js/react-bootstrap-table.min.js"></script>
+	<script> var ReactBsTable = window.BootstrapTable; </script>
+	-->
+	
 	<!-- bootstrap-select -->
 	<link rel="stylesheet" href="/css/bootstrap-select.min.css">
 	<script src="/js/bootstrap-select.min.js"></script>	
@@ -53,6 +69,7 @@
 	<link rel="import" href="/console.html">	
 	<link rel="import" href="/details.html">	
 	<link rel="import" href="/browser.html">
+	<link rel="import" href="/settings-rules.html">
 	<link rel="import" href="/file-upload.html">
 	<link rel="import" href="/file-download.html">
 	 
@@ -69,6 +86,9 @@
 				<li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">File<span class="caret"></span></a>
 					<ul id="file-menu" class="dropdown-menu multi-level"></ul>
 				</li>				
+				<li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">Settings<span class="caret"></span></a>
+					<ul id="settings-menu" class="dropdown-menu"></ul>
+				</li>			
 				<li><a href="#">About</a></li>      
 			</ul>    
 		</div>  
@@ -93,11 +113,11 @@
 			</div>  	  
 		</div>
 	</section>	
-	
+					
 	<footer id="footer">
 		<div class="container-fluid">
 			<p class="footer-text"> © 2016 Menthor Consulting in Information Technology, Inc. Licensed under MIT license.</p>		
-		</div>	
+		</div>			
 	</footer>
 	
 </body>

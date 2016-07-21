@@ -1,0 +1,11 @@
+.checkbox-grid li {
+    display: block;
+    float: left;
+    width: 50%;
+	background-color:rgba(211,211,211,0.3);
+}
+
+.rule-description{
+	font-size:13px;
+	color:blue;
+}

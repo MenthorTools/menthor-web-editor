@@ -1,8 +1,3 @@
-/** On page load, install menuitem */
-$(function(){
-	install_menuitem();	
-});
-
 /** On click at the menuitem, open dialog */
 $(".uploadFile").on('click', function() {
 
@@ -17,19 +12,11 @@ $(".uploadFile").on('click', function() {
 	open_dialog(dialogName, htmlOptions);
 });
 
-/** Install upload-menuitem */
-function install_menuitem()
-{
-	if($('#upload-menuitem').length) return
-	var cloned = thatDoc.importNode(menuItemTemplate, true);
-	thatDoc.querySelector('#file-menu').appendChild(cloned);
-}
-
 /** Get HTML options according to a fileType {json,ea,refontouml} */
 function html_options(fileType)
 {	
 	//clone template
-	var htmlFileChooser = thatDoc.importNode(fileChooserTemplate, true); 
+	var htmlFileChooser = document.importNode(fileChooserTemplate, true); 
 	
 	//accept file type
 	var htmlFileInput = htmlFileChooser.querySelector('#file-input');
@@ -49,10 +36,10 @@ function html_options(fileType)
 	});
 			
 	//HTML result
-	var htmlResult = thatDoc.createElement("div");
+	var htmlResult = document.createElement("div");
 	htmlResult.appendChild(htmlFileChooser);
-	if(fileType==="refontouml") htmlResult.appendChild(thatDoc.importNode(refOptionsTemplate, true));
-	if(fileType==="ea") htmlResult.appendChild(thatDoc.importNode(eaOptionsTemplate, true));	
+	if(fileType==="refontouml") htmlResult.appendChild(document.importNode(refOptionsTemplate, true));
+	if(fileType==="ea") htmlResult.appendChild(document.importNode(eaOptionsTemplate, true));	
 	return htmlResult
 }
 

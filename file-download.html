@@ -1,3 +1,4 @@
+<link rel="import" href="common.html">
 
 </template>
 
@@ -15,22 +16,12 @@
 </template>
 
 <script>
+	var fileDownloadDoc = document._currentScript.ownerDocument;
+	install_template('#download-menuitem','#file-menu',fileDownloadDoc);
+	var textContentTemplate = fileDownloadDoc.querySelector('#download-content');
+</script>
 
-var thisDoc = document._currentScript.ownerDocument;
-var thatDoc = document;
-var menuItemTemplate = thisDoc.querySelector('#download-menuitem');	 
-var textContentTemplate = thisDoc.querySelector('#download-content');	 
-
-$(function(){
-	install_menuitem();
-});
-
-function install_menuitem(){
-	if($('#download-menuitem').length) return	
-	var cloned = thatDoc.importNode(menuItemTemplate, true);
-	thatDoc.querySelector('#file-menu').appendChild(cloned);
-}
-	
+<script>
 function as_html(xmlString) {
 	var result = String(xmlString).replace(/&/g, '&amp;').replace(/</g,     '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
 	return result;

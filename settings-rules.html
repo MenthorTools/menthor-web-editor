@@ -1,0 +1,44 @@
+<link rel="import" href="common.html">
+<link rel="stylesheet" href="settings-rules.css">
+
+</template>
+
+	<li id="rules-menuitem" class=""><a class="dropdown-toggle" data-toggle="dropdown" href="#">Syntactical Rules</a></li>
+	
+	<li id="rule-checkbox" class="checkbox"><label class="rule-description"></label></li>
+	 
+	<div id="syntactical-rules">						
+		<ul id="tabs" class="nav nav-tabs">
+			<li id="specialization-tab" class="active"><a data-toggle="tab" href="#specialization-body">Specializations</a></li>
+			<li id="cardinality-tab"><a data-toggle="tab" href="#cardinality-body">Cardinalities</a></li>
+			<li id="connection-tab"><a data-toggle="tab" href="#connection-body">Connections</a></li>
+			<li id="metaattribute-tab"><a data-toggle="tab" href="#metaattribute-body">Meta-Attributes</a></li>
+			<li id="value-tab"><a data-toggle="tab" href="#value-body">Values</a></li>
+		</ul>										
+		<div class="tab-content">			
+			<div id="specialization-body" class="tab-pane fade in active container-fluid">				
+				<ul class="checkbox-grid"></ul>			
+			</div>
+			<div id="cardinality-body" class="tab-pane fade container-fuid">
+				<ul class="checkbox-grid"></ul>
+			</div>			
+			<div id="connection-body" class="tab-pane fade container-fuid">
+				<ul class="checkbox-grid"></ul>
+			</div>
+			<div id="metaattribute-body" class="tab-pane fade container-fuid">
+				<ul class="checkbox-grid"></ul>
+			</div>
+			<div id="value-body" class="tab-pane fade container-fuid">
+				<ul class="checkbox-grid"></ul>
+			</div>
+		</div>
+	</div>
+	
+</template>
+
+<script>
+	var settingsRulesDoc = document._currentScript.ownerDocument;
+	install_template('#rules-menuitem','#settings-menu',settingsRulesDoc);
+</script>
+
+<script src="settings-rules.js"></script>

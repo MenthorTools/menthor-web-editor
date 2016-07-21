@@ -1,4 +1,5 @@
-<link rel="import" href="../browser.html">
+<link rel="import" href="common.html">
+<link rel="import" href="browser.html">
 <link rel="stylesheet" href="file-upload.css">
 
 </template>
@@ -27,16 +28,16 @@
 		<div class="checkbox"><label><input id="ignore-unnamed-eatypes" type="checkbox" value="" checked>Ignore unnamed classes and datatypes</label></div>
 		<div class="checkbox"><label><input id="set-1-eamultiplicities" type="checkbox" value="" checked>Set [1] for invalid multiplicities</label></div>		
 	</div>
+	
 </template>
 
 <script>
-	var thisDoc = document._currentScript.ownerDocument;
-	var thatDoc = document; //refers to index.html
-
-	var menuItemTemplate = thisDoc.querySelector('#upload-menuitem');	 
-	var fileChooserTemplate = thisDoc.querySelector('#file-chooser');	 
-	var refOptionsTemplate = thisDoc.querySelector('#refontouml-options');	
-	var eaOptionsTemplate = thisDoc.querySelector('#ea-options');
+	var fileUploadDoc = document._currentScript.ownerDocument;
+	install_template('#upload-menuitem','#file-menu',fileUploadDoc);
+	
+	var fileChooserTemplate = fileUploadDoc.querySelector('#file-chooser');	 
+	var refOptionsTemplate = fileUploadDoc.querySelector('#refontouml-options');	
+	var eaOptionsTemplate = fileUploadDoc.querySelector('#ea-options');
 </script>
 
 <script src="file-upload.js"></script>

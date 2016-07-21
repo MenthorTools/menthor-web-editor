@@ -1,0 +1,13 @@
+
+<script>
+/** 
+  * Install a template html element at a particular html parent using a given template.
+  * For example, call it like "install_template('#upload-menuitem','#file-menu', fileUploadDoc)"
+  */
+function install_template(elemIdSelector, parentIdSelector, templateDoc) {
+	var template = templateDoc.querySelector(elemIdSelector);	 	
+	if($(elemIdSelector).length) return
+	var cloned = document.importNode(template, true);
+	document.querySelector(parentIdSelector).appendChild(cloned);
+}
+</script>
